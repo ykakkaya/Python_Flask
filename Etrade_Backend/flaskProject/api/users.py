@@ -9,7 +9,7 @@ def getAllUsers():
     allUsers = []
     users = User.getAllUsers()
     for user in users:
-        allUsers.append({"id": user.id, "username": user.username, "email": user.email, "password": user.password})
+        allUsers.append({"id": user.id, "username": user.username, "email": user.email, "password": user.password,"activated":user.activated})
 
     return jsonify({"success": True, "data": allUsers})
 
@@ -20,7 +20,11 @@ def getUser(id):
 
     if request.method == "GET":
         if user:
-            userObj = {"id": user.id, "username": user.username, "email": user.email, "password": user.password}
+            userObj = {"id": user.id,
+                       "username": user.username,
+                       "email": user.email,
+                       "password": user.password,
+                       "activated":user.activated}
             return jsonify({"success": True, "data": userObj})
         else:
             return jsonify({"success": False, "message": "User bulunamadı"})
@@ -65,5 +69,45 @@ def addUser():
         return jsonify({"success": True, "message": "user başarıyla eklendi"})
 
     except Exception as e:
-        print("error measj: ", e)
+        print("error mesaj: ", e)
         return jsonify(({"success": False, "message": "bir hatayla karşılaşılsı"}))
+
+@apiUsers.route("activated/<int:id>",methods=["POST"])
+def userActivated(id):
+    user=User.userActivated(id=id)
+    return jsonify(({"success": True, "message": "user activated"}))
+
+@apiUsers.route("deactivated/<int:id>",methods=["POST"])
+def userDeactivated(id):
+    user=User.userDeactivated(id=id)
+    return jsonify(({"success": True, "message": "user deactivated"}))
+
+@apiUsers.route("/activelist")
+def activeList():
+    users=User.getAllUsers()
+    activeUsers=[]
+
+    for user in users:
+        if user.activated==True:
+            activeUsers.append({"id":user.id,
+                                "username":user.username,
+                                "email":user.email,
+                                "password":user.password,
+                                "activated":user.activated})
+    return jsonify({"success":True,"data":activeUsers})
+
+
+@apiUsers.route("/deactivelist")
+def deactiveList():
+    users = User.getAllUsers()
+    deactiveUsers = []
+
+    for user in users:
+        if user.activated == False:
+            deactiveUsers.append(
+                {"id": user.id,
+                 "username": user.username,
+                 "email": user.email,
+                 "password": user.password,
+                 "activated": user.activated})
+    return jsonify({"success": True, "data": deactiveUsers})

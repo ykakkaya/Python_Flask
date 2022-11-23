@@ -10,13 +10,15 @@ class User(db.Model):
     username = db.Column(db.String(120), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(120), nullable=False)
+    activated=db.Column(db.Boolean,default=True)
 
 
-    def __init__(self, id, username, email, password):
+    def __init__(self, id, username, email, password,activated):
         self.id = id
         self.username = username
         self.email = email
         self.password = password
+        self.activated=activated
 
 
     @classmethod
@@ -29,7 +31,7 @@ class User(db.Model):
 
     @classmethod
     def add_User(cls, username, email, password):
-        user = cls(id=None,username=username, email=email, password=password)
+        user = cls(id=None,username=username, email=email, password=password,activated=True)
 
         db.session.add(user)
         db.session.commit()
@@ -47,6 +49,18 @@ class User(db.Model):
     def deleteUser(cls, id):
         user = cls.query.filter_by(id=id).first()
         db.session.delete(user)
+        db.session.commit()
+
+    @classmethod
+    def userActivated(cls,id):
+        user=cls.query.filter_by(id=id).first()
+        user.activated=True
+        db.session.commit()
+
+    @classmethod
+    def userDeactivated(cls, id):
+        user = cls.query.filter_by(id=id).first()
+        user.activated = False
         db.session.commit()
 
 
@@ -72,17 +86,17 @@ class Admin(db.Model):
         return cls.query.all()
 
     @classmethod
-    def getAdminsById(cls, id):
+    def getAdminById(cls, id):
         return cls.query.filter_by(id=id).first()
 
     @classmethod
-    def addAdmins(cls, username, email, password, mod):
-        admin = cls(username=username, email=email, password=password, mod=mod)
+    def addAdmin(cls, username, email, password, mod):
+        admin = cls(id=None,username=username, email=email, password=password, mod=mod)
         db.session.add(admin)
         db.session.commit()
 
     @classmethod
-    def updateAdmins(cls, id, username, email, password, mod):
+    def updateAdmin(cls, id, username, email, password, mod):
         admin = cls.query.filter_by(id=id).first()
         admin.username = username
         admin.email = email
@@ -118,20 +132,20 @@ class Category(db.Model):
 
     @classmethod
     def addCategory(cls, name):
-        category = cls(name=name)
+        category = cls(id=None,name=name)
         db.session.add(category)
         db.session.commit()
 
     @classmethod
     def updateCategory(cls, id, name):
-        admin = cls.query.filter_by(id=id).first()
-        admin.username = name
+        category = cls.query.filter_by(id=id).first()
+        category.name = name
         db.session.commit()
 
     @classmethod
     def deleteCategory(cls, id):
-        admin = cls.query.filter_by(id=id).first()
-        db.session.delete(admin)
+        category = cls.query.filter_by(id=id).first()
+        db.session.delete(category)
         db.session.commit()
 
 
@@ -164,7 +178,7 @@ class Product(db.Model):
 
     @classmethod
     def addProduct(cls,name, description, price, discountPrice,categoryId):
-        product = cls(name=name,description=description,price=price,discountPrice=discountPrice,categoryId=categoryId)
+        product = cls(id=None,name=name,description=description,price=price,discountPrice=discountPrice,categoryId=categoryId)
         db.session.add(product)
         db.session.commit()
 
