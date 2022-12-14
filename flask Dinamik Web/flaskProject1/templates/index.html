@@ -1,0 +1,142 @@
+<!--
+Author: W3layouts
+Author URL: http://w3layouts.com
+-->
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <title>DİNAMİK FLASK PROJESİ İNDEX SAYFASI</title>
+    <!-- Meta tag Keywords -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8" />
+    <meta name="keywords"
+        content="Red leaf comingsoon Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+    <!-- //Meta tag Keywords -->
+    <!--/Style-CSS -->
+    <link rel="stylesheet" href="static/index/css/style.css" type="text/css" media="all" />
+    <!--//Style-CSS -->
+</head>
+
+<body>
+    <div class="Coming-block">
+
+        <div class="page">
+
+        </div>
+        <div class="content">
+            <div class="logo">
+                <a class="brand-logo" href="/index">FLASK PROJESİ</a>
+                <!-- if logo is image enable this   
+                <a class="brand-logo" href="#index.html">
+                    <img src="image-path" alt="Your logo" title="Your logo" style="height:35px;" />
+                </a> 
+            -->
+            </div>
+            <div class="w3l-coming-soon-page">
+                <div class="coming-block">
+                    <h1>ÇOK YAKINDA</h1>
+                    <p>UÇTAN UCA DİNAMİK FLASK PROJEMİZ ÇOK YAKINDA SİZLERLE...</p>
+                    <div class="countdown">
+                        <div class="countdown__days">
+                            <div class="number"></div>
+                            <span class></span>
+                        </div>
+
+                        <div class="countdown__hours">
+                            <div class="number"></div>
+                            <span class></span>
+                        </div>
+
+                        <div class="countdown__minutes">
+                            <div class="number"></div>
+                            <span class></span>
+                        </div>
+
+                        <div class="countdown__seconds">
+                            <div class="number"></div>
+                            <span class></span>
+                        </div>
+                    </div>
+                    <a href="/index" class="home">ANASAYFA</a>
+                </div>
+            </div>
+            <div class="copy-right text-center">
+            <p>© 2022 DİNAMİK FLASK PROJESİ | Design by
+                    <a href="http://youtube.com/@ykakkaya" target="_blank">YKAKKAYA</a></p>
+            </div>
+        </div>
+
+        <script src="static/index/js/jquery-3.3.1.min.js"></script>
+        <!--
+        <script>
+            (() => {
+                // Specify the deadline date
+                const deadlineDate = new Date('September 28, 2021 23:59:59').getTime();
+
+                // Cache all countdown boxes into consts
+                const countdownDays = document.querySelector('.countdown__days .number');
+                const countdownHours = document.querySelector('.countdown__hours .number');
+                const countdownMinutes = document.querySelector('.countdown__minutes .number');
+                const countdownSeconds = document.querySelector('.countdown__seconds .number');
+
+                // Update the count down every 1 second (1000 milliseconds)
+                setInterval(() => {
+                    // Get current date and time
+                    const currentDate = new Date().getTime();
+
+                    // Calculate the distance between current date and time and the deadline date and time
+                    const distance = deadlineDate - currentDate;
+
+                    // Calculations the data for remaining days, hours, minutes and seconds
+                    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                    // Insert the result data into individual countdown boxes
+                    countdownDays.innerHTML = days;
+                    countdownHours.innerHTML = hours;
+                    countdownMinutes.innerHTML = minutes;
+                    countdownSeconds.innerHTML = seconds;
+                }, 1000);
+            })();
+        </script>
+        -->
+        <script>
+            var lFollowX = 0,
+                lFollowY = 0,
+                x = 0,
+                y = 0,
+                friction = 1 / 30;
+
+            function animate() {
+                x += (lFollowX - x) * friction;
+                y += (lFollowY - y) * friction;
+
+                translate = 'translate(' + x + 'px, ' + y + 'px) scale(1.1)';
+
+                $('.page').css({
+                    '-webit-transform': translate,
+                    '-moz-transform': translate,
+                    'transform': translate
+                });
+
+                window.requestAnimationFrame(animate);
+            }
+
+            $(window).on('mousemove click', function (e) {
+
+                var lMouseX = Math.max(-100, Math.min(100, $(window).width() / 2 - e.clientX));
+                var lMouseY = Math.max(-100, Math.min(100, $(window).height() / 2 - e.clientY));
+                lFollowX = (20 * lMouseX) / 100; // 100 : 12 = lMouxeX : lFollow
+                lFollowY = (10 * lMouseY) / 100;
+
+            });
+
+            animate();
+        </script>
+    </div>
+</body>
+
+</html>
