@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+      crossorigin="anonymous"
+    />
+    <title>MAAŞ TAHMİN APP</title>
+  </head>
+  <body>
+    
+    <div class="container">
+      
+      <br>
+      <ul class="nav justify-content-center" style="background-color: #54e899;">
+        <li>
+          <a class="navbar-brand" href="/">
+            <img src="static/img/logo3.webp" alt="miuul" width="45" height="45">
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/">ANASAYFA</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="/proje">NEDEN MAAŞ HESAPLAYICI?</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="/team">TAKIMIMIZ</a>
+        </li>
+        
+        <li class="nav-item">
+          <a class="nav-link" href="/statistics">İSTATİSTİKLER</a>
+        </li>
+        
+        
+      </ul>
+
+      <div class="alert alert-info mt-3 text-center">
+        MAAŞ KARAR DESTEK SİSTEMİ
+      </div>
+      <div class="d-flex justify-content-center">
+        <div class="card p-3">
+          <form action="{{ url_for('predict') }}" method="POST">
+            <div class="form-group">
+              <div>
+                <label class="mb-2;alert alert-warning"
+                  >ÇALIŞTIĞINIZ LEVEL</label
+                >
+              </div>
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="level"
+                  id="junior"
+                  value="junior"
+                />
+                <label class="form-check-label" for="junior">JUNIOR</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="level"
+                  id="middle"
+                  value="middle"
+                />
+                <label class="form-check-label" for="middle">MIDDLE</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="level"
+                  id="senior"
+                  value="senior"
+                />
+                <label class="form-check-label" for="senior"
+                  >SENIOR</label
+                >
+              </div>
+            </div>
+            <hr>
+
+            <div class="form-group mt-3">
+              <div>
+                <label class="mb-2;alert alert-warning"
+                  >DENEYİM YILINIZ ?</label
+                >
+              </div>
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="experience"
+                  id="0 - 1 Yıl"
+                  value="0 - 1 Yıl"
+                />
+                <label class="form-check-label" for="kurumsal">0 - 1 Yıl</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="experience"
+                  id="1 - 3 Yıl"
+                  value="1 - 3 Yıl"
+                />
+                <label class="form-check-label" for="startup"
+                  >1 - 3 Yıl</label
+                >
+              </div>
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="experience"
+                  id="3 - 5 Yıl"
+                  value="3 - 5 Yıl"
+                />
+                <label class="form-check-label" for="eticaret"
+                  >3 - 5 Yıl</label
+                >
+              </div>
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="experience"
+                  id="5 - 7 Yıl"
+                  value="5 - 7 Yıl"
+                />
+                <label class="form-check-label" for="outsource"
+                  >5 - 7 Yıl</label
+                >
+              </div>
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="experience"
+                  id="7 - 10 Yıl"
+                  value="7 - 10 Yıl"
+                />
+                <label class="form-check-label" for="reklam"
+                  >7 - 10 Yıl</label
+                >
+              </div>
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="experience"
+                  id="10 - 14 Yıl"
+                  value="10 - 14 Yıl"
+                />
+                <label class="form-check-label" for="oyun"
+                  >10 - 14 Yıl</label
+                >
+              </div>
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="experience"
+                  id="15 Yıl ve üzeri"
+                  value="15 Yıl ve üzeri"
+                />
+                <label class="form-check-label" for="yazTekn"
+                  >15 Yıl ve üzeri</label
+                >
+              </div>
+              
+              <hr>
+            <div class="form-group mt-3">
+              <div>
+                <label class="mb-2;alert alert-warning"
+                  >ÇALIŞTIĞINIZ POZİSYON?</label
+                >
+              </div>
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="position"
+                  id="dataScience"
+                  value="dataScience"
+                />
+                <label class="form-check-label" for="dataScience"
+                  >DATA SCIENTIST</label
+                >
+              </div>
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="position"
+                  id="fullStack"
+                  value="fullStack"
+                />
+                <label class="form-check-label" for="fullStack">FULL STACK DEVELOPER</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="position"
+                  id="backend"
+                  value="backend"
+                />
+                <label class="form-check-label" for="backend"
+                  >BACKEND DEVELOPER</label
+                >
+              </div>
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="position"
+                  id="frontend"
+                  value="frontend"
+                />
+                <label class="form-check-label" for="frontend"
+                  >FRONTEND DEVELOPER</label
+                >
+              </div>
+              
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="position"
+                  id="mobileApp"
+                  value="mobileApp"
+                />
+                <label class="form-check-label" for="mobileApp"
+                  >MOBILE APPLICATION DEVELOPER</label
+                >
+              </div>
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="position"
+                  id="teamLead"
+                  value="teamLead"
+                />
+                <label class="form-check-label" for="teamLead"
+                  >TEAM / TECH LEAD</label
+                >
+              </div>
+              
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="position"
+                  id="softwareManager"
+                  value="softwareManager"
+                />
+                <label class="form-check-label" for="softwareManager"
+                  >SOFTWARE DEVELOPMENT MANAGER</label
+                >
+              </div>
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="position"
+                  id="softwareArch"
+                  value="softwareArch"
+                />
+                <label class="form-check-label" for="softwareArch"
+                  >SOFTWARE ARCHITECT</label
+                >
+              </div>
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="position"
+                  id="embeddedDev"
+                  value="embeddedDev"
+                />
+                <label class="form-check-label" for="embeddedDev"
+                  >EMBEDDED SOFTWARE DEVELOPER</label
+                >
+              </div>
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="position"
+                  id="devopsEng"
+                  value="devopsEng"
+                />
+                <label class="form-check-label" for="devopsEng"
+                  >DEVOPS ENGINEER</label
+                >
+              </div>
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="position"
+                  id="qaTest"
+                  value="qaTest"
+                />
+                <label class="form-check-label" for="qaTest"
+                  >QA / TEST AUTOMATION DEVELOPER</label
+                >
+              </div>
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="position"
+                  id="gameDev"
+                  value="gameDev"
+                />
+                <label class="form-check-label" for="gameDev"
+                  >GAME DEVELOPER </label
+                >
+              </div>
+               <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="position"
+                  id="cto"
+                  value="cto"
+                />
+                <label class="form-check-label" for="cto"
+                  >CTO </label
+                >
+              </div>
+               <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="position"
+                  id="dba"
+                  value="dba"
+                />
+                <label class="form-check-label" for="dba"
+                  >DATABASE ADMIN</label
+                >
+              </div>
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="position"
+                  id="others"
+                  value="others"
+                />
+                <label class="form-check-label" for="others"
+                  >DIGER</label
+                >
+              </div>
+            </div>
+            <hr>
+            <div class="form-group mt-3">
+              <div>
+                <label class="mb-2;alert alert-warning"
+                  >ÇALIŞTIĞINIZ FİRMAYI NASIL TANIMLARSINIZ ?</label
+                >
+              </div>
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="companyType"
+                  id="kurumsal"
+                  value="kurumsal"
+                />
+                <label class="form-check-label" for="kurumsal">Kurumsal</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="companyType"
+                  id="startup"
+                  value="startup"
+                />
+                <label class="form-check-label" for="startup"
+                  >Startup</label
+                >
+              </div>
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="companyType"
+                  id="eticaret"
+                  value="eticaret"
+                />
+                <label class="form-check-label" for="eticaret"
+                  >E-Ticaret</label
+                >
+              </div>
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="companyType"
+                  id="outsource"
+                  value="outsource"
+                />
+                <label class="form-check-label" for="outsource"
+                  >Outsource</label
+                >
+              </div>
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="companyType"
+                  id="reklam"
+                  value="reklam"
+                />
+                <label class="form-check-label" for="reklam"
+                  >Dijital / Reklam Ajansı</label
+                >
+              </div>
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="companyType"
+                  id="oyun"
+                  value="oyun"
+                />
+                <label class="form-check-label" for="oyun"
+                  >Oyun</label
+                >
+              </div>
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="companyType"
+                  id="yazTekn"
+                  value="yazTekn"
+                />
+                <label class="form-check-label" for="yazTekn"
+                  >Yazılım & Teknoloji</label
+                >
+              </div>
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="companyType"
+                  id="finans"
+                  value="finans"
+                />
+                <label class="form-check-label" for="finans"
+                  >Fintech / Finans</label
+                >
+              </div>
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="companyType"
+                  id="diger"
+                  value="diger"
+                />
+                <label class="form-check-label" for="diger"
+                  >DIGER</label
+                >
+              </div>
+              <hr>
+            <div class="form-group mt-3">
+              <div>
+                <label class="mb-2;alert alert-warning"
+                  >ÇALIŞMA ŞEKLİNİZİ NASIL TANIMLARSINIZ?</label
+                >
+              </div>
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="workType"
+                  id="remote"
+                  value="remote"
+                />
+                <label class="form-check-label" for="remote"
+                  >Remote</label
+                >
+              </div>
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="workType"
+                  id="hibrit"
+                  value="hibrit"
+                />
+                <label class="form-check-label" for="hibrit"
+                  >Hibrit</label
+                >
+              </div>
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="workType"
+                  id="ofis"
+                  value="ofis"
+                />
+                <label class="form-check-label" for="ofis"
+                  >Ofis</label
+                >
+              </div>
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="workType"
+                  id="geciciRem"
+                  value="geciciRem"
+                />
+                <label class="form-check-label" for="geciciRem"
+                  >Geçici Remote</label
+                >
+              </div>
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="workType"
+                  id="geciciHib"
+                  value="geciciHib"
+                />
+                <label class="form-check-label" for="geciciHib"
+                  >Geçici Hibrit</label
+                >
+              </div>
+            </div>
+            <hr>
+            <div class="form-group mt-3">
+              <div>
+                <label class="mb-2;alert alert-warning"
+                  >ÇALIŞMA LOKASYONU ?</label
+                >
+              </div>
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="location"
+                  id="yurtici"
+                  value="yurtici"
+                />
+                <label class="form-check-label" for="yurtici"
+                  >YURT İÇİ</label
+                >
+              </div>
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="location"
+                  id="yurtdisi"
+                  value="yurtdisi"
+                />
+                <label class="form-check-label" for="yurtdisi"
+                  >YURT DIŞI</label
+                >
+              </div>
+            </div>
+
+            <hr />
+            <div class="form-group mt-3">
+              <div>
+                <label class="mb-2;alert alert-warning"
+                  >CİNSİYETİNİZ?</label
+                >
+              </div>
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="gender"
+                  id="kadin"
+                  value="kadin"
+                />
+                <label class="form-check-label" for="yurtici"
+                  >KADIN</label
+                >
+              </div>
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="gender"
+                  id="erkek"
+                  value="erkek"
+                />
+                <label class="form-check-label" for="yurtdisi"
+                  >ERKEK</label
+                >
+              </div>
+            </div>
+
+            <hr />
+            <div class="form-group mt-3">
+                <div>
+                  <label class="mb-2;alert alert-warning"
+                    >KAZANÇ TÜRÜNÜZ ?</label
+                  >
+                </div>
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="currency"
+                    id="tl"
+                    value="tl"
+                  />
+                  <label class="form-check-label" for="tl"
+                    >TÜRK LİRASI</label
+                  >
+                </div>
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="currency"
+                    id="dolar"
+                    value="dolar"
+                  />
+                  <label class="form-check-label" for="dolar"
+                    >DOLAR</label
+                  >
+                </div>
+                <div class="form-check form-check-inline">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="currency"
+                      id="euro"
+                      value="euro"
+                    />
+                    <label class="form-check-label" for="euro"
+                      >EURO</label
+                    >
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="currency"
+                      id="sterlin"
+                      value="sterlin"
+                    />
+                    <label class="form-check-label" for="sterlin"
+                      >STERLİN</label
+                    >
+                  </div>
+              </div>
+  
+              <br>
+            <div >
+              <button type="submit" class="btn btn-info">Maaş Tahminini Gör</button>
+              <button type="button" class="btn btn-warning"><a href="/hesapla">YENİDEN HESAPLA</a></button>
+            </div>
+
+			<div class="card-footer text-center mt-3">
+				<label class="alert alert-danger">ORTALAMA ALACAĞINIZ ÜCRET: {{ prediction_text }} {{text}}</label>
+			</div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
